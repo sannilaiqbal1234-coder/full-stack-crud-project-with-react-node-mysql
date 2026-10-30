@@ -1,0 +1,69 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'GitHub source code checked out successfully!'
+            }
+        }
+
+        stage('Validate Docker Compose') {
+            steps {
+                dir('run_mern_stack_with_docker_compose') {
+                    sh 'docker compose config -q'
+                    echo 'Docker Compose configuration is valid!'
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Ready for Docker build!'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Jenkins Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed. Check Console Output.'
+        }
+    }
+}pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'GitHub source code checked out successfully!'
+            }
+        }
+
+        stage('Validate Docker Compose') {
+            steps {
+                dir('run_mern_stack_with_docker_compose') {
+                    sh 'docker compose config -q'
+                    echo 'Docker Compose configuration is valid!'
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Ready for Docker build!'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Jenkins Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed. Check Console Output.'
+        }
+    }
+}
